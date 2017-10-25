@@ -1,7 +1,16 @@
 (function() {
   function SongPlayer() {
+
+    /**
+    * @desc Object to be returned by this service
+    * @type {Object}
+    */
     var SongPlayer = {};
 
+    /**
+    * @desc currently selected song
+    * @type {Object}
+    */
     var currentSong = null;
 
  /**
@@ -34,21 +43,35 @@
     };
 
 
+    /**
+    * @function playSong
+    * @desc Plays current Buzz object and sets the 'playing' property of song to true
+    * @param {Object} song
+    */
+    var playSong= function(song){
+      currentBuzzObject.play();
+      song.playing = true;
+    };
 
 
 
 
+
+    /**
+    * @function this.play
+    * @desc calls setSong() and playSong() if currentSong is not the one clicked. Otherwise this will play the currentSong or pause if it is already playing
+    * @param {Object} song
+    */
     SongPlayer.play = function(song) {
 
       if(currentSong !== song){
       setSong(song);
 
-      currentBuzzObject.play();
-      song.playing = true;
+      playSong(song);
 
     } else if(currentSong === song) {
       if(currentBuzzObject.isPaused()) {
-        currentBuzzObject.play();
+        playSong(song);
       }
       }
 
@@ -56,7 +79,11 @@
 
 
 
-
+    /**
+    * @function this.pause
+    * @desc pauses currently playing song and sets 'playing' attribute of song to false
+    * @param {Object} song
+    */
     SongPlayer.pause = function (song) {
       currentBuzzObject.pause();
       song.playing = false;
