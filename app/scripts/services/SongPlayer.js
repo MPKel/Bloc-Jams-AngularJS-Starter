@@ -21,9 +21,6 @@
     var currentBuzzObject = null;
 
 
-
-
-
     /**
     * @function setSong
     * @desc Stops currently playing song and loads new audio file as currentBuzzObject
@@ -88,15 +85,33 @@
     */
     SongPlayer.currentSong = null;
 
+
+    /**
+    * @desc Volume attribute
+    * @type {Object}
+    */
+    SongPlayer.volume = 40;
+
+
     /**
     * @desc Current playback time (in seconds) of currently playing song
     * @type {Number}
     */
     SongPlayer.currentTime = null;
 
+    /**
+    * @function setVolume
+    * @desc update volume on change
+    * @param {Object} song
+    */
+    SongPlayer.setVolume = function(value){
+      SongPlayer.volume = value;
+      currentBuzzObject.setVolume(SongPlayer.volume);
+    };
+
 
     /**
-    * @function this.play
+    * @function play
     * @desc calls setSong() and playSong() if SongPlayer.currentSong is not the one clicked. Otherwise this will play the SongPlayer.currentSong or pause if it is already playing
     * @param {Object} song
     */
@@ -118,7 +133,7 @@
 
 
     /**
-    * @function this.pause
+    * @function pause
     * @desc pauses currently playing song and sets 'playing' attribute of song to false
     * @param {Object} song
     */
@@ -129,7 +144,7 @@
 
 
     /**
-    * @function this.previous
+    * @function previous
     * @desc decrements the current song index by one to select the previous song. If previous song Index is less than 0
     * stop playing and set first song to currently playing, else move to previous song and play it.
     */
@@ -149,7 +164,7 @@
 
 
     /**
-    * @function this.next
+    * @function next
     * @desc increments the current song index by one to select the next song. If at end of songlist, stop playing, else play next song.
     */
 
