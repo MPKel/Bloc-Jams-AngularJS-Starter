@@ -17,7 +17,7 @@
               <a class="album-song-button" ng-show="listen.playing" ng-click="albumSongs.songPlayer.pause(listen)"><span class="ion-pause"></span></a>
             </td>
             <td class="song-item-title">{{ listen.title }}</td>
-            <td class="song-item-duration">{{ listen.duration }}</td>
+            <td class="song-item-duration">{{ listen.duration | timecode}}</td>
         </tr>
     </table>
 </main>
