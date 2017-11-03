@@ -1,5 +1,5 @@
 (function() {
-   function seekBar($document) {
+   function seekBar($document, SongPlayer) {
      var calculatePercent = function(seekBar, event) {
        var offsetX = event.pageX - seekBar.offset().left;
        var seekBarWidth = seekBar.width();
@@ -26,11 +26,13 @@
 
          attributes.$observe('value', function(newValue){
            scope.value = newValue;
+           if(scope.vlaue === scope.max){console.log("yay mike")};
          });
 
          attributes.$observe('max', function(newValue){
            scope.max = newValue;
          });
+
 
          var percentString = function () {
            var value = scope.value;
@@ -73,7 +75,7 @@
 
          };
 
-         var notifyOnChange =  function(newValue){
+         var notifyOnChange =  function(newValue) {
            if(typeof scope.onChange === 'function') {
               scope.onChange({value: newValue});
            }
@@ -88,6 +90,6 @@
 
    angular
     .module('blocJams')
-    .directive('seekBar', ['$document', seekBar]);
+    .directive('seekBar', ['$document', 'SongPlayer', seekBar]);
 
   }) ();

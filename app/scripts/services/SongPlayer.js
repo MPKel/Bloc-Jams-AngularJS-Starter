@@ -14,6 +14,13 @@
     var currentAlbum = Fixtures.getAlbum();
 
 
+    /**
+    * @desc Volume level to be stored if mute button is pressed
+    * @type {Number}
+    */
+    var previousVolume = null;
+
+
  /**
  * @desc Buzz object audio file
  * @type {Object}
@@ -35,6 +42,13 @@
       currentBuzzObject = new buzz.sound(song.audioUrl, {
         formats: ['mp3'],
         preload: true
+      });
+
+
+      currentBuzzObject.bind('ended', function() {
+        $rootScope.$apply(function() {
+          SongPlayer.next();
+        });
       });
 
       currentBuzzObject.bind('timeupdate', function() {
@@ -107,6 +121,26 @@
     SongPlayer.setVolume = function(value){
       SongPlayer.volume = value;
       currentBuzzObject.setVolume(SongPlayer.volume);
+    };
+
+
+
+
+    /**
+    * @function mute
+    * @desc mute/unmute
+    */
+    SongPlayer.mute = function(){
+      if(SongPlayer.volume !== 0){
+        previousVolume = SongPlayer.volume;
+        SongPlayer.setVolume(0);
+        currentBuzzObject.setVolume(SongPlayer.volume);
+      }
+      else {
+        SongPlayer.setVolume(previousVolume);
+        currentBuzzObject.setVolume(SongPlayer.volume);
+        previousVolume = null;
+      }
     };
 
 
