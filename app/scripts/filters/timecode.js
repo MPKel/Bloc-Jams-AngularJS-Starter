@@ -1,5 +1,5 @@
 (function() {
-  function timecode() {
+  function timecode(SongPlayer) {
     return function(seconds){
       var seconds = Number.parseFloat(seconds);
 
@@ -15,5 +15,5 @@
 
   angular
     .module('blocJams')
-    .filter('timecode', timecode);
+    .filter('timecode', ['SongPlayer', timecode]);
   }) ();
