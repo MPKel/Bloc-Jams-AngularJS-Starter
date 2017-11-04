@@ -26,8 +26,7 @@
 
          attributes.$observe('value', function(newValue){
            scope.value = newValue;
-           if(scope.vlaue === scope.max){console.log("yay mike")};
-         });
+        });
 
          attributes.$observe('max', function(newValue){
            scope.max = newValue;
