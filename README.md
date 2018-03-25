@@ -1,6 +1,6 @@
 # Bloc-Jams
 
-### Bloc Jams music playing app-project framework forked from Bloc.io started project. Functionality implemented with AngularJS.
+### Bloc Jams music playing app. Project framework forked from Bloc.io starter project. Functionality implemented with AngularJS.
 
 ![Landing](app/assets/images/landing.png)
 
